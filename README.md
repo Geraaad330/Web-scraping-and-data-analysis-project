@@ -1,4 +1,4 @@
-# Web-scraping-project
+# Web scraping and data analysis project
 
 ## Getting Started
 
