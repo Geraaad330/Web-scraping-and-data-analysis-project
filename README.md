@@ -1,13 +1,15 @@
 # Web scraping and data analysis project
 
-## Getting Started
-
-### Local Development
+## How to install
 
 ```python
 pip install selenium
 pip install seaborn
 ```
+
+## Description
+
+
 ![Alt tekst](https://github.com/Geraaad330/Web-scraping-and-data-analysis-project/blob/main/pictures/web_scraping1.png)
 
 ![Alt tekst](https://github.com/Geraaad330/Web-scraping-and-data-analysis-project/blob/main/pictures/web_scraping2.png)
