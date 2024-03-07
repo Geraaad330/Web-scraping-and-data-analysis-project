@@ -15,7 +15,7 @@ def initialize_browser():
 def get_tree_links(driver, url):
     print(f"Otwieranie strony głównej drzewek technologicznych: {url}")
     driver.get(url)
-    sleep(2)  # Oczekiwanie na załadowanie strony
+    sleep(2) 
     print("Pobieranie linków do drzewek technologicznych...")
     elements = driver.find_elements(By.CSS_SELECTOR, "a[href*='/techtree/']")
     links = [element.get_attribute('href') for element in elements]
@@ -28,7 +28,6 @@ def get_tank_links(driver, tree_url):
     driver.get(tree_url)
     sleep(2)
     print("Pobieranie linków do czołgów...")
-    # Pobieranie wszystkich linków do czołgów z drzewka, które w linku zawierają tank
     elements = driver.find_elements(By.CSS_SELECTOR, "a[href*='/tank/']")
     links = [element.get_attribute('href') for element in elements]
     print(f"Znaleziono {len(links)} linków do czołgów.")
@@ -40,7 +39,6 @@ def get_tank_stats(driver, tank_url):
     driver.get(tank_url)
     sleep(2)
     print("Pobieranie statystyk czołgu...")
-    # Pobieranie wszystkich statystyk strony czołgu, które w kodzie zawierają div.stat-line
     stats_elements = driver.find_elements(By.CSS_SELECTOR, "div.stat-line")
     stats = {}
     for element in stats_elements:
@@ -58,12 +56,9 @@ def main():
 
     all_tanks_stats = {}
     for tree_link in tree_links:
-        # po zakończeniu pętli i pobraniu wszystkich statystyk z każdej strony w drzewku
-        # przechodzi do get_tank_links
         tank_links = get_tank_links(driver, tree_link)
         for tank_link in tank_links:
-            tank_name = tank_link.split('/')[-1]  # Wyodrębnienie nazwy czołgu z URL
-            # otwieranie wszystkich linków z wszystkimi czołgami
+            tank_name = tank_link.split('/')[-1] 
             tank_stats = get_tank_stats(driver, tank_link)
             all_tanks_stats[tank_name] = tank_stats
             
@@ -72,11 +67,9 @@ def main():
     csv_file_path = "C:\\studia\\python\\projekt_web_scraping\\tanks_stats.csv"
     with open(csv_file_path, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        # Nagłówki kolumn
-        headers = ['Tank Name', 'Statistic', 'Value']  # Zmieniono z 'Tank URL' na 'Tank Name'
+        headers = ['Tank Name', 'Statistic', 'Value']
         writer.writerow(headers)
         
-        # Zapisywanie danych
         for tank_name, stats in all_tanks_stats.items():
             for stat, value in stats.items():
                 writer.writerow([tank_name, stat, value])
