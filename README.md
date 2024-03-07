@@ -4,5 +4,7 @@
 
 ### Local Development
 
+```python
 pip install selenium
 pip install seaborn
+```
